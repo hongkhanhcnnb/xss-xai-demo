@@ -1,0 +1,7 @@
+Item,Value
+Device,cuda
+Token vocab size,20000
+Char vocab size,159
+Number of structural features,91
+MAX_TEXT_LEN,256
+MAX_CHAR_LEN,512
