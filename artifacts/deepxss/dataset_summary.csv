@@ -1,0 +1,13 @@
+Metric,Value
+Total samples,64833.0
+Total columns,5.0
+Benign samples,31407.0
+XSS samples,33426.0
+Missing values in Sentence,0.0
+Missing values in Label,0.0
+Duplicated Sentence,26.0
+Conflicting duplicated Sentence,25.0
+Min sentence length,1.0
+Mean sentence length,69.52
+Median sentence length,48.0
+Max sentence length,8493.0
