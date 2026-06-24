@@ -28,7 +28,7 @@ EXAMPLES = {
     "Event handler": '<img src=x onerror=alert(document.cookie)>',
     "javascript: URL": '<a href="javascript:alert(1)">click</a>',
     "Encoded": '%3Cscript%3Ealert%281%29%3C%2Fscript%3E',
-    "Benign": 'Hello world',
+    "Benign": 'Đây là nội dung an toàn',
 }
 
 
