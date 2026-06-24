@@ -17,8 +17,8 @@ st.set_page_config(
 BASE_DIR = Path(__file__).resolve().parent
 
 DATASETS = {
-    "DeepXSS_Dataset_02": BASE_DIR / "artifacts" / "deepxss",
     "XSS_dataset": BASE_DIR / "artifacts" / "fmereani",
+    "DeepXSS_Dataset_02": BASE_DIR / "artifacts" / "deepxss",
 }
 
 QR_PATH = BASE_DIR / "assets" / "qr.png"
@@ -28,7 +28,7 @@ EXAMPLES = {
     "Event handler": '<img src=x onerror=alert(document.cookie)>',
     "javascript: URL": '<a href="javascript:alert(1)">click</a>',
     "Encoded": '%3Cscript%3Ealert%281%29%3C%2Fscript%3E',
-    "Benign": 'Hello, this is a normal search keyword',
+    "Benign": 'Hello world',
 }
 
 
