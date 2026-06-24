@@ -21,12 +21,14 @@ DATASETS = {
     "XSS_dataset / fmereani": BASE_DIR / "artifacts" / "fmereani",
 }
 
+QR_PATH = BASE_DIR / "assets" / "qr.png"
+
 EXAMPLES = {
     "XSS cơ bản": '<script>alert(1)</script>',
     "Event handler": '<img src=x onerror=alert(document.cookie)>',
     "javascript: URL": '<a href="javascript:alert(1)">click</a>',
     "Encoded": '%3Cscript%3Ealert%281%29%3C%2Fscript%3E',
-    "Benign": 'Hello, this is a normal search keyword',
+    "Benign": "Hello, this is a normal search keyword",
 }
 
 
@@ -82,12 +84,6 @@ st.markdown(
         font-size: 1.05rem;
         margin-bottom: 1.2rem;
     }
-    .risk-card {
-        padding: 1.2rem;
-        border-radius: 18px;
-        border: 1px solid #e5e7eb;
-        background: linear-gradient(135deg, #ffffff, #f8fafc);
-    }
     .small-note {
         color: #667085;
         font-size: 0.9rem;
@@ -101,6 +97,7 @@ st.markdown(
     '<div class="main-title">XMD-XSS: Demo phát hiện payload XSS bằng học sâu đa phương thức</div>',
     unsafe_allow_html=True,
 )
+
 st.markdown(
     '<div class="subtitle">Nhập payload → mô hình Text + Structural + Char dự đoán XSS / Benign, hiển thị xác suất, đặc trưng, kết quả thực nghiệm và giải thích XAI.</div>',
     unsafe_allow_html=True,
@@ -126,6 +123,19 @@ with st.sidebar:
     if st.button("Đưa ví dụ vào ô nhập", type="secondary", use_container_width=True):
         st.session_state.payload_input = EXAMPLES[selected_example]
         st.rerun()
+
+    st.divider()
+    st.subheader("Truy cập nhanh")
+
+    if QR_PATH.exists():
+        st.image(
+            str(QR_PATH),
+            caption="Quét mã QR để mở website demo",
+            use_container_width=True,
+        )
+        st.caption("Quét QR để truy cập trực tiếp hệ thống.")
+    else:
+        st.info("Chưa tìm thấy ảnh QR tại assets/qr.png.")
 
 predictor = load_predictor(str(artifact_path))
 
@@ -204,6 +214,7 @@ if analyze:
             feature_df = feature_df[
                 feature_df["Value"].astype(float).abs() > 0
             ].head(30)
+
             st.dataframe(feature_df, use_container_width=True, hide_index=True)
 
             st.subheader("Xác suất hai lớp")
