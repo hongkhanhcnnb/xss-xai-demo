@@ -18,8 +18,10 @@ BASE_DIR = Path(__file__).resolve().parent
 
 DATASETS = {
     "DeepXSS_Dataset_02": BASE_DIR / "artifacts" / "deepxss",
-    "XSS_dataset / fmereani": BASE_DIR / "artifacts" / "fmereani",
+    "XSS_dataset": BASE_DIR / "artifacts" / "fmereani",
 }
+
+QR_PATH = BASE_DIR / "assets" / "qr.png"
 
 EXAMPLES = {
     "XSS cơ bản": '<script>alert(1)</script>',
@@ -102,7 +104,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 st.markdown(
-    '<div class="subtitle">Nhập payload → mô hình Text + Structural + Char dự đoán XSS / Benign, hiển thị xác suất, đặc trưng, kết quả thực nghiệm và giải thích XAI.</div>',
+    '<div class="subtitle">Nhập payload → mô hình Text, Structural, Char dự đoán XSS / Benign, hiển thị xác suất, đặc trưng, kết quả thực nghiệm và giải thích XAI.</div>',
     unsafe_allow_html=True,
 )
 
@@ -115,9 +117,6 @@ with st.sidebar:
     dataset_name = st.selectbox("Chọn dataset/model", list(DATASETS.keys()))
     artifact_path = DATASETS[dataset_name]
 
-    st.caption("Mô hình đang dùng: Text + Structural + Char_best.pt")
-    st.caption("Ngưỡng phân loại mặc định: 0.5")
-
     st.divider()
     st.subheader("Payload mẫu")
 
@@ -127,7 +126,7 @@ with st.sidebar:
         st.session_state.payload_input = EXAMPLES[selected_example]
         st.rerun()
 
-st.divider()
+    st.divider()
     st.subheader("Truy cập nhanh")
 
     if QR_PATH.exists():
